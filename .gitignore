@@ -1,0 +1,11 @@
+input
+.DS_Store
+*.dSYM
+
+# IDE
+/.idea
+*.iml
+
+**/bin/*
+!**/bin/.gitkeep
+
