@@ -1,18 +1,9 @@
-import * as fs from "fs";
-import * as path from "path";
-import exp = require("constants");
+import { load, check } from "./utils";
 
-const toplevelPath: string = path.dirname(path.dirname(__dirname));
 const fileName = "10-corrupted_lines.txt";
-const input: string = fs.readFileSync(
-  path.join(toplevelPath, "input", fileName),
-  "utf8"
-);
 
-const testInput: string = fs.readFileSync(
-  path.join(toplevelPath, "test", fileName),
-  "utf8"
-);
+const input: string = load(fileName, "input");
+const testInput: string = load(fileName, "test");
 
 type Corruption = {
   index?: number;
@@ -125,12 +116,6 @@ function part2(linesIn: string[]): number {
     .filter((score) => score > 0)
     .sort((n1, n2) => n1 - n2);
   return scores[Math.floor(scores.length / 2)];
-}
-
-function check(actual: any, expected: any): void {
-  if (actual !== expected) {
-    throw new Error(`actual: ${actual}, expected: ${expected}`);
-  }
 }
 
 check(part1(testLines), 26397);
